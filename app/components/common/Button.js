@@ -61,6 +61,11 @@ const styles = StyleSheet.create({
   primary: {backgroundColor: theme.colors.primary},
   black: {backgroundColor: theme.colors.black},
   white: {backgroundColor: theme.colors.white},
+  bule: {backgroundColor: theme.colors.bule},
+  red: {backgroundColor: theme.colors.red},
+  green: {backgroundColor: theme.colors.green},
+  orange: {backgroundColor: theme.colors.orange},
+  violet: {backgroundColor: theme.colors.violet},
   gray: {backgroundColor: theme.colors.gray},
   gray2: {backgroundColor: theme.colors.gray2},
 });

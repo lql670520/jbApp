@@ -1,24 +1,20 @@
 /**
- * 初始化数据
+ * 初始化数据\全局
  */
 import {Actions} from 'react-native-router-flux';
+
 import * as api from '../services/init';
-import storage from '../utils/storage';
-import common from '../utils/common';
 
 export default {
   namespace: 'init',
   state: {
+    //是否加载数据
     loadding: {
       isShow: false,
       timeout: -1, //显示时间，-1为无限
       text: '加载中...',
     },
-
-    currentRouter: '', //当前路由
-    // sms: {
-    //   tran_id: null,
-    // },
+    //当前用户
     currentUser: {
       id: '',
       account: '',
@@ -26,10 +22,18 @@ export default {
       realname: '',
       phone: '',
     },
-    projects: [], // {id, name, children: [{id, name}]}
+    //项目// {id, name, children: [{id, name}]}
+    projects: [],
+    //当前项目
     currentProject: {
       id: '',
       category: [], //分类
+    },
+    //统计
+    summery: {
+      //当前告警等级
+      alertLevel: 1,
+      ces: '12321',
     },
   },
 
@@ -65,16 +69,32 @@ export default {
             currentProject: currentProject,
           },
         });
+
+        //刷新其他数据
+        yield put({
+          type: 'updateCurrentProject',
+          payload: {
+            data: currentProject,
+          },
+          isInit: true,
+        });
       } else {
         Actions.popTo('loginPage'); //返回登录页
       }
     },
 
     // 切换/修改当前项目
-    *updateCurrentProject({payload = {}}, {call, put, select}) {
-      const currentProject = yield select(state => state.init.currentProject);
-      //如果id一样不用切换
-      if (currentProject.id !== payload.data.id) {
+    *updateCurrentProject({payload = {}, isInit = false}, {call, put, select}) {
+      const projectId = payload.data.id;
+      //如果是初始化
+      if (!isInit) {
+        const currentProject = yield select(state => state.init.currentProject);
+        //如果id一样不用切换
+        if (currentProject.id === projectId) {
+          return;
+        }
+
+        //1.修改当前项目
         yield put({
           type: 'updateState',
           payload: {
@@ -82,6 +102,16 @@ export default {
           },
         });
       }
+
+      //2.获取项目评分
+      yield put({
+        type: 'countProject/getProjectSafetyPoint',
+      });
+
+      //2.获取项目评分
+      yield put({
+        type: 'countProject/summery',
+      });
     },
   },
 
@@ -90,6 +120,18 @@ export default {
       return {
         ...state,
         ...payload,
+      };
+    },
+
+    //修改统计
+    updateSummery(state, {payload}) {
+      console.log('修改', {
+        ...state,
+        summery: {...payload.summery},
+      });
+      return {
+        ...state,
+        summery: {...payload.summery},
       };
     },
 

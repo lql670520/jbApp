@@ -11,3 +11,5 @@ import './app/index';
 // ];
 // 关闭全部yellow警告
 console.disableYellowBox = true;
+//在浏览器上向上network内容
+GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest;

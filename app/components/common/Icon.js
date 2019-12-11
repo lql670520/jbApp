@@ -7,9 +7,15 @@ import {theme} from '../../constants';
 
 export default class Icon extends Component {
   render() {
-    const {type, size} = this.props;
-    return type === 'image' ? null : (
+    const {image, size, name} = this.props;
+    return image ? (
+      <Image
+        style={[{height: size, width: size}, this.props.style]}
+        source={name}
+      />
+    ) : (
       <Ionicons
+        name={name}
         size={size ? size : 23}
         color={theme.colors.white}
         {...this.props}

@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Actions} from 'react-native-router-flux';
 
-import {Container, Header} from '../../components/common';
+import {Container, Header, Block} from '../../components/common';
 import PickerProject from '../../components/PickerProject';
-// import SafetyPointRadar from '../../components/echarts/SafetyPointRadar';
-// import HomeSwiper from '../../components/HomeSwiper';
+import SafetyPointRadar from '../../components/echarts/SafetyPointRadar';
+import HomeSwiper from '../../components/HomeSwiper';
 
 class HomePage extends Component {
   constructor(props) {
@@ -13,25 +14,25 @@ class HomePage extends Component {
   }
 
   render() {
-    const {projects, currentUser, currentProject} = this.props;
-    console.log(projects, currentProject, currentUser);
+    const {alertLevel} = this.props;
     return (
-      <Container color="alertColor3">
+      <Container color={`alertColor${alertLevel}`}>
         {/* 头部 */}
         <Header noColor leftIcon={['message']} rightIcon={['menu']} />
         {/* {/* 项目选择框 */}
-        <PickerProject margin={[10, 0, 0, 0]} componentType="min" />
+        <PickerProject margin={[10, 0]} />
         {/* 评分雷达图 */}
-        {/* <SafetyPointRadar margin={[50, 0, 0, 0]} /> */}
-        {/* 其他导航 */}
-        {/* <HomeSwiper navigation={navigation} relative={{bottom: 100}} /> */}
+        <SafetyPointRadar onPress={() => Actions.safetyPointPage()} />
+
+        <Block color="#dedede" margin={[40, 0, 0, 0]}>
+          {/* 其他导航 */}
+          <HomeSwiper relative={{top: -40}} />
+        </Block>
       </Container>
     );
   }
 }
 
 export default connect(({init}) => ({
-  currentUser: init.currentUser,
-  currentProject: init.currentProject,
-  projects: init.projects,
+  alertLevel: init.summery.alertLevel,
 }))(HomePage);

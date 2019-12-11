@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
+import {Actions} from 'react-native-router-flux';
 
 import Text from './Text';
 import Block from './Block';
@@ -10,8 +11,7 @@ const micons = {
   goback: {
     name: 'ios-arrow-back',
     onPress: props => {
-      alert('退出');
-      //   navigation.goBack();
+      Actions.pop(); //返回上一页
     },
   },
   menu: {

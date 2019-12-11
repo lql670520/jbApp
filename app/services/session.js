@@ -3,7 +3,7 @@ import request from '../utils/request';
 // 登录
 export function login({account, password}) {
   return request({
-    url: '/login/account',
+    url: '/api/login/account',
     type: 'post',
     data: {
       userName: account,
@@ -16,7 +16,7 @@ export function login({account, password}) {
 // 退出登录
 export function logout({userId}) {
   return request({
-    url: `/user/${userId}/logout`,
+    url: `/api/user/${userId}/logout`,
     type: 'post',
   });
 }

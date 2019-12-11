@@ -2,6 +2,7 @@
  * 日期选择控件
  */
 import React, {Component} from 'react';
+import moment from 'moment';
 
 import {Block, Text, Icon, PickerBase} from './common';
 import {theme} from '../constants';
@@ -9,16 +10,18 @@ import {theme} from '../constants';
 export default class PickerDate extends Component {
   constructor(props) {
     super(props);
-    const date = new Date();
+    let time = [
+      moment().format('YYYY'),
+      moment().format('MM'),
+      moment().format('DD'),
+    ];
+
+    const {date} = props;
+    if (date) {
+      time = [date.substr(0, 4), date.substr(5, 2), date.substr(8, 2)];
+    }
     this.state = {
-      time: [
-        date.getFullYear(),
-        (date.getMonth() + 1).toString().padStart(2, '0'),
-        date
-          .getDate()
-          .toString()
-          .padStart(2, '0'),
-      ],
+      time: time,
     };
   }
 
@@ -35,6 +38,17 @@ export default class PickerDate extends Component {
     this.setState({
       time: value,
     });
+
+    //判断是否有回调
+    if (this.props._callGetDate) {
+      this.props._callGetDate(this.formatDate());
+    }
+  };
+
+  formatDate = () => {
+    return (
+      this.state.time[0] + '-' + this.state.time[1] + '-' + this.state.time[2]
+    );
   };
 
   //期数据
@@ -80,7 +94,7 @@ export default class PickerDate extends Component {
   };
 
   render() {
-    const {dateType, color} = this.props;
+    const {color} = this.props;
     const meColor = color
       ? theme.colors[color]
         ? theme.colors[color]
@@ -93,8 +107,8 @@ export default class PickerDate extends Component {
           touchableOpacity
           row
           onPress={() => this.openTime()}>
-          <Text center color={meColor}>
-            {dateType === 'month'
+          <Text center color={meColor} margin={[0, 5]}>
+            {this.props.dateType === 'month'
               ? this.state.time[0] + '-' + this.state.time[1]
               : this.state.time[0] +
                 '-' +
@@ -102,12 +116,13 @@ export default class PickerDate extends Component {
                 '-' +
                 this.state.time[2]}
           </Text>
-          <Icon
-            name="ios-calendar"
-            size={25}
-            color={meColor}
-            style={{marginLeft: 5}}
-          />
+          <Text>
+            <Icon
+              image
+              name={require('../assets/img/date.png')}
+              size={theme.sizes.base}
+            />
+          </Text>
         </Block>
         <PickerBase
           ref={picker => (this.picker = picker)}

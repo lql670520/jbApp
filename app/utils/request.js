@@ -1,8 +1,21 @@
 import axios from 'axios';
 import storage from './storage';
 
+// "proxy": {
+//   "/v2/api": {
+//     "target": "http://api.wlw.com",
+//     "changeOrigin": true,
+//     "pathRewrite": { "^/v2/api": "/1.0" }
+//   },
+//   "/v1/api": {
+//     "target": "http://app.junbangyunhan.com",
+//     "changeOrigin": true
+//   }
+// }
 //请求路径
-const REQUEST_PATH = 'http://app.dev.junbangyunhan.com/v1/api';
+// const REQUEST_PATH = 'http://center.dev.junbangyunhan.com/v1';
+const REQUEST_PATH = 'http://app.junbangyunhan.com/v1';
+// const REQUEST_PATH = ''; //代理支配
 
 //获取Authorization
 function getAuthorization() {
@@ -43,7 +56,7 @@ export default function request({url, data, type}) {
 
       return axios(config)
         .then(res => {
-          console.log(res.data.data || res.data);
+          // console.log(res.data.data || res.data);
           return resolve({
             success: true,
             data: res.data.data || res.data,
@@ -51,6 +64,7 @@ export default function request({url, data, type}) {
           });
         })
         .catch(e => {
+          console.log(e);
           const res = e.response;
           if (!res) {
             alert(e.message);

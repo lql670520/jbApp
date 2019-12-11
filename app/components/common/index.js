@@ -5,15 +5,21 @@ import Button from './Button';
 import Container from './Container';
 import Icon, {TextIcon} from './Icon';
 import Header from './Header';
+import Content from './Content';
+import ContentFooter from './ContentFooter';
 import PickerBase from './PickerBase';
+import Tabs from './Tabs';
+import TabContent from './TabContent';
 import Toast from './Toast';
 import Loading from './Loading';
-
-// import Content from './Content';
+import NoData from './NoData';
+import {Legned, MinLegned} from './Legned';
+import Close from './Close';
+import {FilterButton, FilterText} from './Filter';
 // import PickerDate from './PickerDate';
-// import Tabs from './Tabs';
+
 // import InputSearch from './InputSearch';
-// import Legned from './Legned';
+
 // import RadioView from './RadioView';
 // import SwitchButton from './SwitchButton';
 
@@ -24,14 +30,22 @@ export {
   Button,
   Container,
   Icon,
+  Legned,
+  MinLegned,
   TextIcon,
   Header,
+  Content,
+  ContentFooter,
+  Tabs,
+  TabContent,
   PickerBase,
   Toast,
   Loading,
-  //   Content,
+  NoData,
+  Close,
+  FilterButton,
+  FilterText,
   //   PickerDate,
-  //   Tabs,
   //   InputSearch,
   //   Legned,
   //   RadioView,

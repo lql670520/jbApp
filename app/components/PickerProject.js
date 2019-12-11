@@ -103,6 +103,28 @@ class PickerProject extends Component {
         iconName={'ios-arrow-down'}
         onPress={() => this.openProject()}
       />
+    ) : componentType === 'medium' ? (
+      <Block flex={false} touchableOpacity onPress={() => this.openProject()}>
+        <Text black center>
+          {currentProject && currentProject.pickerName
+            ? currentProject.pickerName[0] + '.' + currentProject.pickerName[1]
+            : ''}
+        </Text>
+
+        <Block flex={false} row center middle>
+          <Text h2 center black semibold>
+            {currentProject && currentProject.pickerName
+              ? currentProject.pickerName[2]
+              : ''}
+          </Text>
+          <Icon
+            name="ios-arrow-down"
+            size={20}
+            color={'#808080'}
+            style={{marginLeft: 5, marginTop: 5}}
+          />
+        </Block>
+      </Block>
     ) : (
       <Block flex={false} touchableOpacity onPress={() => this.openProject()}>
         <Text gray3 center>
@@ -111,17 +133,19 @@ class PickerProject extends Component {
             : ''}
         </Text>
 
-        <Text h1 center white>
-          {currentProject && currentProject.pickerName
-            ? currentProject.pickerName[2]
-            : ''}
+        <Block flex={false} row center middle>
+          <Text h1 center white>
+            {currentProject && currentProject.pickerName
+              ? currentProject.pickerName[2]
+              : ''}
+          </Text>
           <Icon
             name="ios-arrow-down"
             size={30}
             color={theme.colors.gray3}
-            style={{marginLeft: 5}}
+            style={{marginLeft: 5, marginTop: 5}}
           />
-        </Text>
+        </Block>
       </Block>
     );
   };

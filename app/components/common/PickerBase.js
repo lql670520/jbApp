@@ -65,7 +65,7 @@ export default class PickerBase extends Component {
   }
   //显示picker
   _showPicker() {
-    console.log('show', this.props.createData());
+    // console.log('show', this.props.createData());
     Picker.init({
       pickerData: this.props.createData(),
       selectedValue: this.state.selectedValue,

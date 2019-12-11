@@ -1,10 +1,10 @@
 import {Dimensions} from 'react-native';
 
 const colors = {
-  alertColor1: '#2842EF',
-  alertColor2: '#723AF1',
-  alertColor3: '#FD9240',
-  alertColor4: '#FD4061',
+  alertColor1: '#2BC66A',
+  alertColor2: '#807FFF',
+  alertColor3: '#FFA835',
+  alertColor4: '#FF697A',
   // alertColor1: 'linear-gradient(-41deg, #2842EF 0%, #00BED0 100%)',
   // alertColor2: 'linear-gradient(-41deg, #723AF1 0%, #BC92FF 100%)',
   // alertColor3: 'linear-gradient(-35deg, #FD9240 0%, #FFBE5A 100%)',
@@ -14,14 +14,21 @@ const colors = {
   accent: '#2842EF',
   // secondary: '#2BDA8E',
   // tertiary: '#FFE358',
-  black: '#323643',
+  black: '#1d1d1d',
   white: '#FFFFFF',
+  bule: '#286aff',
+  red: '#FF697A',
+  green: '#2bc669',
+  orange: '#ffa835',
+  violet: '#807fff',
   gray: 'rgba(48,68,74,.5)',
   gray1: 'rgba(48,68,74,.8)',
   gray2: 'rgba(48,68,74,.2)',
   gray3: 'hsla(0,0%,100%,.8)',
   gray4: 'rgba(238,240,245,0.8)',
   gray5: '#f5f5f9',
+  gray_bg: '#eaedf7',
+  gray_: '#dfdfef',
 
   delete: '#e94f4f',
   edit: '#108ee9',
@@ -38,7 +45,7 @@ const sizes = {
 
   // font sizes
   h1: 30,
-  h2: 20,
+  h2: 26,
   h3: 18,
   h4: 90,
   h5: 28,
@@ -96,32 +103,4 @@ const deviceInfo = {
 //点击透明度
 const activeOpacity = 1;
 
-//警告等级
-const alertLevelMap = {
-  1: {
-    name: '安全',
-    // icon: icon1,
-    color: '#61CD00',
-    rgb: '97,205,0',
-  },
-  2: {
-    name: '一般隐患',
-    // icon: icon2,
-    color: '#8E8DFB',
-    rgb: '142,141,251',
-  },
-  3: {
-    name: '严重隐患',
-    // icon: icon3,
-    color: '#FFAE46',
-    rgb: '255,174,70',
-  },
-  4: {
-    name: '报警',
-    // icon: icon4,
-    color: '#FF6D7B',
-    rgb: '255,109,123',
-  },
-};
-
-export {colors, sizes, fonts, deviceInfo, activeOpacity, alertLevelMap};
+export {colors, sizes, fonts, deviceInfo, activeOpacity};
