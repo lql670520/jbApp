@@ -11,12 +11,7 @@ export default {
     token: null,
   },
   effects: {
-    *login(
-      {
-        payload: {account, password},
-      },
-      {call, put},
-    ) {
+    *login({payload: {account, password}}, {call, put}) {
       yield put(common.loading({isShow: true, text: '登录中...'}));
 
       const {success, data} = yield call(api.login, {account, password});
@@ -40,11 +35,14 @@ export default {
         Actions.homePage();
       } else {
         //错误消息
-        common.toast(data);
+        // common.toast(data);
       }
     },
 
-    *logout({payload}, {call, put, select}) {},
+    *logout({payload}, {call, put, select}) {
+      storage.clear();
+      Actions.loginPage();
+    },
   },
   reducers: {
     updateState(state, {payload}) {
@@ -54,12 +52,7 @@ export default {
       };
     },
     // 登录成功
-    loginSuccess(
-      state,
-      {
-        payload: {user_id: userId, token},
-      },
-    ) {
+    loginSuccess(state, {payload: {user_id: userId, token}}) {
       return {
         ...state,
         userId,

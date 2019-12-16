@@ -97,7 +97,7 @@ export default class SafetyTrend extends Component {
         },
       },
       toolbox: {
-        show: false,
+        show: true,
         feature: {
           magicType: {show: true, type: ['line', 'bar']},
         },
@@ -140,14 +140,15 @@ export default class SafetyTrend extends Component {
       calculable: true,
       series: series,
     };
+    const {eHeight, eMarginTop} = this.props;
     return (
-      <Block {...this.props}>
+      <Block flex={false} {...this.props}>
         <LevelLegned />
         <Echarts
           option={option}
           data={this.props.data}
-          height={300}
-          marginTop={-30}
+          height={eHeight ? eHeight : 300}
+          marginTop={eMarginTop ? eMarginTop : -30}
         />
       </Block>
     );

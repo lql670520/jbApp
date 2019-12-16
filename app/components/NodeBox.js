@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 
 import {Block, Text, Icon, MinLegned} from './common';
 import {theme} from '../constants';
-import {alertLevels} from '../constants/status';
+import {alertLevels, nodeEnv} from '../constants/status';
+import {Actions} from 'react-native-router-flux';
 
 export default class NodeBox extends Component {
   render() {
     const {nodeData} = this.props;
     const alertLevel =
       nodeData && nodeData.alert_level ? nodeData.alert_level : 1;
+
     return (
       <Block
         flex={false}
@@ -18,6 +20,9 @@ export default class NodeBox extends Component {
         margin={[0, 10, 10, 10]}
         row
         touchableOpacity
+        onPress={() => {
+          Actions.nodeDetailPage({params: {id: nodeData.id}});
+        }}
         {...this.props}>
         <Block row padding={[5, 10, 10, 10]}>
           <Block
@@ -30,16 +35,19 @@ export default class NodeBox extends Component {
             </Block>
             <Block row center margin={[5, 0, 0, 0]}>
               <Block row>
-                <Block
-                  flex={false}
-                  color={'#D1E5FE'}
-                  padding={[0, 3]}
-                  margin={[0, 3, 0, 0]}
-                  card>
-                  <Text content gray>
-                    住宅
-                  </Text>
-                </Block>
+                {nodeData.env ? (
+                  <Block
+                    flex={false}
+                    color={'#D1E5FE'}
+                    padding={[0, 3]}
+                    margin={[0, 3, 0, 0]}
+                    card>
+                    <Text content gray>
+                      {nodeEnv[nodeData.env].name}
+                    </Text>
+                  </Block>
+                ) : null}
+
                 {nodeData.category
                   ? nodeData.category.map((v, i) => {
                       return (

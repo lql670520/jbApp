@@ -96,6 +96,16 @@ export default class SwipeView extends PureComponent {
     }
   };
 
+  //删除数据
+  delete = id => {
+    if (id && this.state.flatListData.length > 0) {
+      const flatListData = this.state.flatListData.filter(
+        item => item.id !== id,
+      );
+      this.setState({flatListData: flatListData});
+    }
+  };
+
   render() {
     const {isRefresh, isLoading} = this.props;
     return (
@@ -107,7 +117,7 @@ export default class SwipeView extends PureComponent {
             ? this.state.flatListData
             : null
         }
-        keyExtractor={(item, index) => String(index) + String(item.id)}
+        keyExtractor={(item, index) => String(item.id)}
         //设置下拉刷新
         refreshControl={
           isRefresh === true ? (
@@ -151,17 +161,13 @@ export default class SwipeView extends PureComponent {
         closeOnRowPress={true} //当按下一行，关闭打开的行
         closeOnScroll={true} //列表滚动时关闭打开的行
         //禁止右滑
-        disableRightSwipe={
-          this.props.disableRightSwipe ? this.props.disableRightSwipe : true
-        }
+        disableRightSwipe={this.props.rightSwipe ? false : true}
         leftOpenValue={this.props.leftOpenValue ? this.props.leftOpenValue : 75} //列表项左滑translateX的值：正值75 * 4
         stopLeftSwipe={
           this.props.stopLeftSwipe ? this.props.stopLeftSwipe : 75 * 2
         } //列表项左滑translateX最大的值：正值75 * 4
         //禁止左滑
-        disableLeftSwipe={
-          this.props.disableLeftSwipe ? this.props.disableLeftSwipe : false
-        }
+        disableLeftSwipe={this.props.leftSwipe ? false : true}
         rightOpenValue={
           this.props.rightOpenValue ? this.props.rightOpenValue : -75
         } //列表项右滑translateX的值：负值

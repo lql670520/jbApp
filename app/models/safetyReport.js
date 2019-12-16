@@ -89,10 +89,12 @@ export default {
         yield put({
           type: 'updateState',
           payload: {
-            editType: 'detail',
             currentItem: data,
           },
         });
+        return true;
+      } else {
+        return false;
       }
     },
     *analyse({payload}, {call, put, select}) {

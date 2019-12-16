@@ -13,6 +13,12 @@ import SafetyReportPage from './pages/home/safetyReport/SafetyReportPage';
 import SafetyTrendPage from './pages/home/safetyTrend/SafetyTrendPage';
 import PatrolPage from './pages/home/patrol/PatrolPage';
 import FilterPage from './pages/filter/FilterPage';
+import DeploymapDetailPage from './pages/devices/deploymapDetail/DeploymapDetailPage';
+import DeploymapSubDetailPage from './pages/devices/deploymapDetail/DeploymapSubDetailPage';
+import NodeDetailPage from './pages/devices/nodeDetail/NodeDetailPage';
+import MessagePage from './pages/message/MessagePage';
+import PasswordPage from './pages/password/PasswordPage';
+import SafetyReportDetailPage from './pages/home/safetyReport/SafetyReportDetailPage';
 
 class Routers extends Component {
   render() {
@@ -27,11 +33,36 @@ class Routers extends Component {
               initial={true} //默认选中值
             />
             <Scene
+              key="passwordPage"
+              component={PasswordPage}
+              hideNavBar={true} //不要头部
+            />
+            <Scene
+              key="messagePage"
+              component={MessagePage}
+              hideNavBar={true} //不要头部
+            />
+            <Scene
               key="filterPage"
               component={FilterPage}
               hideNavBar={true} //不要头部
-              // initial={true} //默认选中值
             />
+            <Scene
+              key="deploymapDetailPage"
+              component={DeploymapDetailPage}
+              hideNavBar={true} //不要头部
+            />
+            <Scene
+              key="deploymapSubDetailPage"
+              component={DeploymapSubDetailPage}
+              hideNavBar={true} //不要头部
+            />
+            <Scene
+              key="nodeDetailPage"
+              component={NodeDetailPage}
+              hideNavBar={true} //不要头部
+            />
+
             <Scene
               key="safetyPointPage"
               component={SafetyPointPage}
@@ -42,6 +73,13 @@ class Routers extends Component {
               component={SafetyReportPage}
               hideNavBar={true}
             />
+            <Scene
+              key="safetyReportDetailPage"
+              component={SafetyReportDetailPage}
+              hideNavBar={true}
+              // initial={true} //默认选中值
+            />
+            
             <Scene
               key="safetyTrendPage"
               component={SafetyTrendPage}

@@ -6,12 +6,13 @@ import {theme} from '../../constants';
 
 export default class Content extends Component {
   render() {
-    return (
-      // <Block
-      //   color={this.props.color ? this.props.color : theme.colors.gray_bg}
-      //   {...this.props}>
-      //   <ScrollView>{this.props.children}</ScrollView>
-      // </Block>
+    return this.props.scrollView ? (
+      <Block
+        color={this.props.color ? this.props.color : theme.colors.gray_bg}
+        {...this.props}>
+        <ScrollView>{this.props.children}</ScrollView>
+      </Block>
+    ) : (
       <Block
         color={this.props.color ? this.props.color : theme.colors.gray_bg}
         {...this.props}>

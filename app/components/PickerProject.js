@@ -125,6 +125,46 @@ class PickerProject extends Component {
           />
         </Block>
       </Block>
+    ) : componentType === 'icon' ? (
+      <Block
+        flex={false}
+        row
+        color={'white'}
+        borderRadius={10}
+        margin={[0, 20]}
+        touchableOpacity
+        onPress={() => this.openProject()}>
+        <Block row margin={[10]}>
+          <Block flex={false} row center margin={[0,5,0,0]}>
+            <Icon image name={require('../assets/img/p.png')} size={40}></Icon>
+          </Block>
+          <Block>
+            <Text black>
+              {currentProject && currentProject.pickerName
+                ? currentProject.pickerName[0] +
+                  '.' +
+                  currentProject.pickerName[1]
+                : ''}
+            </Text>
+
+            <Block flex={false} row center space="between">
+              <Block>
+                <Text h1 black>
+                  {currentProject && currentProject.pickerName
+                    ? currentProject.pickerName[2]
+                    : ''}
+                </Text>
+              </Block>
+              <Icon
+                name="ios-arrow-forward"
+                size={25}
+                color={theme.colors.black}
+                style={{marginLeft: 5, marginTop: 5}}
+              />
+            </Block>
+          </Block>
+        </Block>
+      </Block>
     ) : (
       <Block flex={false} touchableOpacity onPress={() => this.openProject()}>
         <Text gray3 center>

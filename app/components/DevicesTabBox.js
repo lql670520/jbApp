@@ -7,14 +7,14 @@ import {theme} from '../constants';
 
 export default class DevicesTabBox extends Component {
   render() {
-    const {count, name, tabLength} = this.props;
+    const {count, name, tabLength, border} = this.props;
     const length = tabLength ? tabLength : 3;
     return (
       <Block
         center
         middle
         width={(theme.deviceInfo.width * 0.9) / length}
-        border={[0, 0, 0, 1]}
+        border={border ? border : [0, 0, 0, 1]}
         margin={[10, 0]}
         borderColor={theme.colors.gray_}>
         <Text h5 center>

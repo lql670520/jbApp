@@ -10,12 +10,12 @@ import {
 import SwipeView from '../../components/common/SwipeView';
 import NodeBox from '../../components/NodeBox';
 
-export default class NodeTabPage extends Component {
+export default class DangerNodeTab extends Component {
   render() {
     const {filter, filterOnPress} = this.props;
     return (
       <Content>
-        <Block flex={false} right row margin={[15, 10]}>
+        <Block flex={false} right row margin={[15, 20]}>
           {filter.map(item => (
             <FilterText title={item.id > 0 && item.name ? item.name : ''} />
           ))}

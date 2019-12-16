@@ -42,7 +42,12 @@ class SafetyReportPage extends Component {
     return (
       <Container color={`alertColor${alertLevel}`}>
         {/* 头部 */}
-        <Header noColor leftIcon={['goback']} rightIcon={[]} />
+        <Header
+          noColor
+          leftIcon={['goback']}
+          rightIcon={[]}
+          dispatch={this.props.dispatch}
+        />
         {/* 项目选择框 */}
         <PickerProject margin={[10, 0, 20, 0]} />
         {/* 日期选择框 */}

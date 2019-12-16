@@ -56,7 +56,6 @@ export default function request({url, data, type}) {
 
       return axios(config)
         .then(res => {
-          // console.log(res.data.data || res.data);
           return resolve({
             success: true,
             data: res.data.data || res.data,

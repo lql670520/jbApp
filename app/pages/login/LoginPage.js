@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Keyboard} from 'react-native';
 
 import {Container, Block, Text, Input, Button} from '../../components/common';
+import {Actions} from 'react-native-router-flux';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -22,8 +23,7 @@ class LoginPage extends Component {
   };
 
   _handleResetPassword = () => {
-    // const {navigation} = this.props;
-    // navigation.navigate('ReastPasswordPage');
+    Actions.passwordPage();
   };
 
   render() {
@@ -62,11 +62,17 @@ class LoginPage extends Component {
               登 录
             </Text>
           </Button>
-          <Button onPress={this._handleResetPassword}>
-            <Text center color="gray">
-              忘记密码
-            </Text>
-          </Button>
+
+          <Block flex={false} row center middle margin={[10, 0]}>
+            <Block
+              flex={false}
+              touchableOpacity
+              onPress={this._handleResetPassword}>
+              <Text center color="gray">
+                忘记密码
+              </Text>
+            </Block>
+          </Block>
         </Block>
       </Container>
     );

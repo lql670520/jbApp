@@ -22,9 +22,8 @@ const micons = {
   },
   message: {
     name: 'md-text',
-    onPress: (navigation, props) => {
-      alert('消息');
-      //   navigation.navigate('MessagePage');
+    onPress: props => {
+      Actions.messagePage();
     },
   },
   userAdd: {
@@ -78,14 +77,10 @@ class MenuBox extends Component {
   }
 
   //点击文本内容
-  _handleContent = (path, goPage) => {
+  _handleContent = fun => {
     this.setState({showMenu: false});
-    if (path) {
-      if (goPage) {
-        this.props.navigation.navigate(path, {goPage: goPage});
-      } else {
-        this.props.navigation.navigate(path);
-      }
+    if (fun) {
+      fun();
     }
   };
   render() {
@@ -96,11 +91,19 @@ class MenuBox extends Component {
         path: 'ReastPasswordPage',
         // goPage: 'HomePage',
         icon: 'ios-key',
+        onPress: () => {
+          Actions.passwordPage();
+        },
       },
       {
         title: '退出',
         path: 'LoginPage',
         icon: 'ios-backspace',
+        onPress: () => {
+          this.props.dispatch({
+            type: 'session/logout',
+          });
+        },
       },
     ];
     const attentionMenu = [
@@ -137,7 +140,7 @@ class MenuBox extends Component {
                     ]}
                     activeOpacity={theme.activeOpacity}
                     onPress={() => {
-                      this._handleContent(v.path, v.goPage);
+                      this._handleContent(v.onPress);
                     }}>
                     <Icon style={styles.menuIcon} name={v.icon} size={18} />
                     <Text content>{v.title}</Text>
@@ -175,15 +178,20 @@ export default class Header extends Component {
 
   //左边显示
   _showLeft = () => {
-    const {navigation, leftIcon} = this.props;
+    const {navigation, leftIcon, dispatch} = this.props;
     return leftIcon ? (
-      <HeaderIcon left icons={leftIcon} navigation={navigation} />
+      <HeaderIcon
+        left
+        icons={leftIcon}
+        navigation={navigation}
+        dispatch={dispatch}
+      />
     ) : null;
   };
 
   //右边显示
   _showRight = () => {
-    const {navigation, rightIcon} = this.props;
+    const {navigation, rightIcon, dispatch} = this.props;
     return rightIcon ? (
       <HeaderIcon
         right
@@ -192,6 +200,7 @@ export default class Header extends Component {
         onPressMenu={() => {
           this._onPressMenu();
         }}
+        dispatch={dispatch}
       />
     ) : null;
   };
@@ -219,6 +228,7 @@ export default class Header extends Component {
           <MenuBox
             menuType={menuType ? menuType : 'mainMenu'}
             navigation={this.props.navigation}
+            dispatch={this.props.dispatch}
           />
         ) : null}
       </View>

@@ -10,9 +10,10 @@ export default class NoData extends Component {
         center
         middle
         color="#fff"
+        margin={this.props.margin ? this.props.margin : [0, 10]}
         padding={this.props.padding ? this.props.padding : [10, 0]}>
         <Icon image name={require('../../assets/img/doData.png')} size={120} />
-        <Text margin={[10, 0, 0, 0]}>暂无数据</Text>
+        <Text margin={[10, 10, 10, 10]}>暂无数据</Text>
       </Block>
     );
   }

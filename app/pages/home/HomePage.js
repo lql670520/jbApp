@@ -18,7 +18,12 @@ class HomePage extends Component {
     return (
       <Container color={`alertColor${alertLevel}`}>
         {/* 头部 */}
-        <Header noColor leftIcon={['message']} rightIcon={['menu']} />
+        <Header
+          noColor
+          leftIcon={['message']}
+          rightIcon={['menu']}
+          dispatch={this.props.dispatch}
+        />
         {/* {/* 项目选择框 */}
         <PickerProject margin={[10, 0]} />
         {/* 评分雷达图 */}

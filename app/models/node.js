@@ -24,7 +24,7 @@ export default {
     },
     realtimeData: [],
     historyData: [],
-    currentItem: {},
+    currentItem: {id: '', alert_level: 1, p_code: ''},
     analyseData: [],
     safetyEventData: [],
     editType: 'create',

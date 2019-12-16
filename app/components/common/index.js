@@ -16,12 +16,8 @@ import NoData from './NoData';
 import {Legned, MinLegned} from './Legned';
 import Close from './Close';
 import {FilterButton, FilterText} from './Filter';
-// import PickerDate from './PickerDate';
-
-// import InputSearch from './InputSearch';
-
-// import RadioView from './RadioView';
-// import SwitchButton from './SwitchButton';
+import SwipeView from './SwipeView';
+import {SwipeBox, SwipeButton} from './Swipe';
 
 export {
   Block,
@@ -45,9 +41,7 @@ export {
   Close,
   FilterButton,
   FilterText,
-  //   PickerDate,
-  //   InputSearch,
-  //   Legned,
-  //   RadioView,
-  //   SwitchButton,
+  SwipeView,
+  SwipeBox,
+  SwipeButton,
 };

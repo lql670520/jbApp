@@ -11,6 +11,17 @@ export default {
     trendMonth: {time: [], data: []},
     project_id: '',
     projectSafetyPoint: [0, 0, 0, 0],
+    summery: {
+      node_all: 0, //   监测点总数
+      node_alert: 0, //  问题监测点
+      node_safety: 0, // 安全监测点
+      alert_level: 1, //   安全等级
+      safety_point: [], // 安全评分
+      unread_event: 0, // 未读安全事件
+      unread_message: 0, // 未读消息
+      unread_report: 0, //未读安全报告
+      deploymap_amount: 0, // 父网格数量
+    },
   },
 
   effects: {
